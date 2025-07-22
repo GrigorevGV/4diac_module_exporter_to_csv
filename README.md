@@ -9,7 +9,6 @@
 - `parser.cpp` - исходный код парсера
 - `CMakeLists.txt` - файл конфигурации CMake для сборки
 - `blocks_and_connections.csv` - пример выходного CSV файла
-- `ИНСТРУКЦИЯ.txt` - подробная инструкция по использованию
 
 ## Быстрый старт
 
@@ -23,7 +22,7 @@ cmake --build .
 
 ### Сборка с помощью g++:
 ```bash
-g++ -std=c++17 -Wall -Wextra -o parser parser.cpp
+g++ -o parser parser.cpp
 ```
 
 ### Запуск:
@@ -31,12 +30,6 @@ g++ -std=c++17 -Wall -Wextra -o parser parser.cpp
 ./parser.exe
 ```
 Затем введите путь к .sys файлу при запросе.
-
-### Пример:
-```bash
-./parser.exe
-Enter path to file: foo_test1/foo_test1.sys
-```
 
 ## Что показывает программа
 
@@ -52,47 +45,9 @@ Enter path to file: foo_test1/foo_test1.sys
 ```
 Название_блока
 Source;Destination;Source;Destination
-randomizer.CNF;REQ;CNF;myIntOut.REQ
-randomizer.DO1;DI1;DO1;myIntOut.DI1
 ```
 
 Где:
 - Первые два столбца: входы блока (откуда приходит сигнал)
 - Последние два столбца: выходы блока (куда идет сигнал)
 - Полные пути включают название блока и порта
-
-## Пример вывода в консоль
-```
-=== СПИСОК БЛОКОВ ===
-Block: MYINC (Type: MYINC)
-Block: myIntOut (Type: myIntOut)
-Block: randomizer (Type: randomizer)
-
-=== СОЕДИНЕНИЯ ===
-MYINC.CNF -> myIntOut.REQ (Event)
-randomizer.CNF -> MYINC.REQ (Event)
-MYINC.DO1 -> myIntOut.DI1 (Data)
-
-=== ДЕТАЛЬНАЯ ИНФОРМАЦИЯ О БЛОКАХ ===
-Block: MYINC
-  Inputs:
-    REQ <- randomizer.CNF
-    DI1 <- randomizer.DO1
-  Outputs:
-    CNF -> myIntOut.REQ
-    DO1 -> myIntOut.DI1
-```
-
-## Особенности
-
-- **Современный C++** - использует C++17 стандарт
-- **CMake поддержка** - удобная сборка проекта
-- **CSV экспорт** - автоматическое создание структурированных таблиц
-- **Подробный вывод** - показывает процесс парсинга в реальном времени
-- **Гибкость** - работает с любыми .sys файлами 4diac
-
-## Требования
-
-- Компилятор C++ с поддержкой C++17 (g++, clang++, MSVC)
-- CMake 3.10 или выше (для сборки через CMake)
-- Стандартная библиотека C++ 
